@@ -1,0 +1,54 @@
+<html>
+    <% include ../partials/head %>
+
+    <body>
+        
+        <% include ../partials/nav %>
+        
+        <div class="container">
+            <h3>Adicione um contato</h3>
+            <form action="/contatos" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="name">Nome</label>
+                    <input type="text" id="name" name="name" placeholder="Coloque o nome" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <label for="nickname">Apelido</label>
+                    <input type="text" id="nickname" name="nickname" placeholder="Coloque o Apelido" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" id="email" name="email" placeholder="Coloque o email" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Telefone</label>
+                    <input type="text" id="phone" name="phone" placeholder="Coloque o telefone" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <label for="birthday">Aniversário</label>
+                    <input type="date" id="birthday" name="birthday" placeholder="Coloque a data (YYYY/MM/DD)" class="form-control"/>
+                </div>
+            
+                <div class="form-group">
+                    <label for="image">Foto</label>
+                    <input type="file" name="image" id="image" class="form-control">
+                </div>
+                <div class="form-group hidden">
+                    <label for="photo">Foto URL</label>
+                    <input type="text" name="photo" id="photo" class="form-control">
+                </div>
+
+                <!--
+                <div>
+                    <label for="photo">Foto</label>
+                    <input type="file" id="photo" name="photo" placeholder="Coloque o título"/>
+                </div> 
+                -->
+                <input type="submit" value="adicionar" class="btn btn-success"/>
+            </form>
+        </div>
+        <% include ../partials/footer %>
+
+        <% include ../partials/scripts %>
+    </body>
+</html>

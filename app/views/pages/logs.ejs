@@ -1,0 +1,35 @@
+<html>
+    
+    <% include ../partials/head %>
+    
+    <body>
+        <% include ../partials/nav %>
+        <div class="container">
+            <div class="table-responsive">
+                <table class="table table-bordered table-condensed">
+                    <thead>
+                        <tr align='center'>
+                            <td>Tipo</td>
+                            <td>Iniciada em</td>
+                            <td>Tempo de execução</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <%for(var i=0; i<list.length; i++){%>
+                                <tr align='center'>
+                                    <td><%=list[i].type%></td>
+                                    <td><%=list[i].timeStarted%></td>
+                                    <td><%=list[i].timeElapsed%></td>
+                                </tr>
+                            <%}%>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <% include ../partials/footer %>
+
+        <% include ../partials/scripts %>
+    </body>
+</html>

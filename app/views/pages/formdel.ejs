@@ -1,0 +1,21 @@
+<html>
+    <% include ../partials/head %>
+    <body>
+        
+        <% include ../partials/nav %>
+        
+        <div class="container">
+            <h3>Delete um contato</h3>
+            <form action="/deletar" method="post">
+                <div class="form-group">
+                    <label for="name">Nome</label>
+                    <input type="text" id="name" name="name" placeholder="Insira o nome aqui" class="form-control"/>
+                </div>
+                <input type="submit" value="deletar" class="btn btn-success"/>
+            </form>
+        </div>
+        <% include ../partials/footer %>
+
+        <% include ../partials/scripts %>
+    </body>
+</html>

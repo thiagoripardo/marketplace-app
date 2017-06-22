@@ -1,0 +1,45 @@
+<html>
+    
+    <% include ../partials/head %>
+    
+    <body>
+        <% include ../partials/nav %>
+        <div class="container">
+            <div class="table-responsive">
+                <table class="table table-bordered table-condensed">
+                    <thead>
+                        <tr align='center'>
+                            <td>#</td>
+                            <td>ID</td>
+                            <td>Nome</td>
+                            <td>Apelido</td>
+                            <td>Email</td>
+                            <td>Telefone</td>
+                            <td>Aniversário</td>
+                            <!--<td>Foto</td>-->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <%for(var i=0; i<list.length; i++){%>
+                                <tr align='center'>
+                                    <!--<td><%=list[i].id%></td>-->
+                                    <td><img width="75px" height="75px" src="<%=list[i].photo%>"></td>
+                                    <td><%=list[i].id%></td>
+                                    <td><%=list[i].name%></td>
+                                    <td><%=list[i].nickname%></td>
+                                    <td><%=list[i].email%></td>
+                                    <td><%=list[i].phone%></td>
+                                    <td><%=list[i].birthday%></td>
+                                </tr>
+                            <%}%>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <% include ../partials/footer %>
+
+        <% include ../partials/scripts %>
+    </body>
+</html>
