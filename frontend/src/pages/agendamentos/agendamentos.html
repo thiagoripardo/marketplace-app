@@ -1,0 +1,24 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>agendamentos</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+      <ion-item-sliding *ngFor="let agendamento of agendamentos">
+        <ion-item [class.falha]="!agendamento.confirmado">
+          {{ agendamento.carro.nome }} - {{ agendamento.valor }}
+        </ion-item>
+        <ion-item-options side="right">
+          <button 
+            ion-button *ngIf="!agendamento.confirmado" 
+            (click)="reenvia(agendamento)">
+              Reenviar
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+  </ion-list>
+</ion-content>

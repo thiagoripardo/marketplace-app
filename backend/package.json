@@ -1,0 +1,37 @@
+{
+  "name": "uniquest",
+  "main": "app.js",
+  "version": "1.0.1",
+  "description": "Web server for uniquest app",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.org/tmripardo/questlog-backend.git"
+  },
+  "author": "Eduardo Melo, Thiago Ripardo",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "aws-sdk": "latest",
+    "bcrypt-nodejs": "latest",
+    "body-parser": "latest",
+    "bootstrap": "latest",
+    "connect-flash": "latest",
+    "cookie-parser": "latest",
+    "cors": "^2.8.3",
+    "dynamoose": "latest",
+    "ejs": "latest",
+    "express": "latest",
+    "express-load": "latest",
+    "express-session": "latest",
+    "method-override": "latest",
+    "morgan": "latest",
+    "multer": "latest",
+    "mysql": "latest",
+    "passport": "latest",
+    "passport-json": "latest",
+    "passport-local": "latest",
+    "string-hash": "latest"
+  }
+}
