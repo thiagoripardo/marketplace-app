@@ -13,7 +13,7 @@ import 'rxjs/add/operator/map';
 })
 export class LoginPage {
 
-  public email = 'uniquest@uniquest.com'; 
+  public email = 'uniquest@uniquest.com';
   public password = '57n92s';
   public isAuthenticated: boolean = false;
   public result;
@@ -26,8 +26,8 @@ export class LoginPage {
     public http: Http) {}
   efetuaLogin() {
 
-    /*this._service
-      .efetuaLogin(this.email, this.senha)
+    this._service
+      .efetuaLogin(this.email, this.password)
       .then(usuario => {
         console.log(usuario);
         this.navCtrl.setRoot(HomePage)
@@ -38,11 +38,11 @@ export class LoginPage {
           subTitle: 'Email ou senha inválidos. Verifique',
           buttons: [{ text: 'Ok'}]
         }).present();
-      });*/
+      });
 
     
  
-    let postParams = {
+    /*let postParams = {
 
       email: 'uniquest@uniquest.com',
       password: '57n92s'
@@ -60,6 +60,6 @@ export class LoginPage {
         console.log(data['_body']);
        }, error => {
         console.log(error);// Error getting the data
-      });
+      });*/
   }
 }
