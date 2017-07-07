@@ -1,4 +1,7 @@
 export class Carro {
 
-    constructor(public nome: string, public preco: number) {}
+    constructor(
+        public nome: string, 
+        public preco: number
+    ) {}
 }

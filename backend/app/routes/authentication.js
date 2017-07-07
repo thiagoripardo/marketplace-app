@@ -1,5 +1,7 @@
 module.exports = function(app, passport) {
     var auth = require('../infra/isLoggedIn');
+    var User = require('../models/user');
+    var jwt        = require("jsonwebtoken");
     // =====================================
     // HOME PAGE (with login links) ========
     // =====================================
@@ -23,11 +25,11 @@ module.exports = function(app, passport) {
     // process the login form
     // app.post('/login', do all our passport stuff here);
     // process the login form
-    app.post('/login', passport.authenticate('login', { failureRedirect: '/login' }),
+    /*app.post('/login', passport.authenticate('login', { failureRedirect: '/login' }),
         function(req, res) {
             res.redirect('/profile');
         }
-    );
+    );*/
     // =====================================
     // SIGNUP ==============================
     // =====================================
@@ -46,11 +48,76 @@ module.exports = function(app, passport) {
         failureFlash : true // allow flash messages
     }));*/
     
-    app.post('/signup', passport.authenticate('signup', { failureRedirect: '/signup' }),
+    /*app.post('/signup', passport.authenticate('signup', { failureRedirect: '/signup' }),
         function(req, res) {
             res.redirect('/profile');
         }
-    );
+    );*/
+
+    // Register new users
+    app.post('/register', function(req, res) {
+        if(!req.body.email || !req.body.password) {
+            res.json({ success: false, message: 'Please enter email and password.' });
+        } else {
+
+            /*var newUser = new User({
+                email: req.body.email,
+                password: req.body.password
+            });*/
+            User.get({email: req.body.email}, function(err, user) {
+                if (err) throw err;
+
+                // check to see if theres already a user with that email
+                if (user) {
+                    return res.json({ success: false, message: 'That email address already exists.'});
+                } else {
+                    var newUser = new User();
+
+                    // set the user's local credentials
+                    newUser.email    = req.body.email;
+                    newUser.password = newUser.generateHash(req.body.password);
+
+                    // Attempt to save the user
+                    newUser.save(function(err) {
+                        if (err) throw err;
+                        else{
+                            res.json({ success: true, message: 'Successfully created new user.' });
+                        }
+                    });
+                } 
+            });
+        }
+    });
+
+    app.post('/authenticate', function(req, res) {
+        User.get({
+            email: req.body.email
+        }, function(err, user) {
+            if (err) throw err;
+
+            if (!user) {
+                res.send({ success: false, message: 'Authentication failed. User not found.' });
+            } else {
+                // Check if password matches
+                user.comparePassword(req.body.password, function(err, isMatch) {
+                    if (isMatch && !err) {
+                    // Create token if the password matched and no error was thrown
+                    
+                    var token = jwt.sign(user, "ThisIsAnVerySecureKey", {
+                        expiresIn: 100 // in seconds
+                    });
+                        res.json({ success: true, token: 'JWT ' + token });
+                    } else {
+                        res.send({ success: false, message: 'Authentication failed. Passwords did not match.' });
+                    }
+                });
+            }
+        });
+    });
+
+    app.get('/dashboard', passport.authenticate('jwt', { session: false }), function(req, res) {
+        res.send('It worked! User id is: ' + req.user.email + '.');
+    });
 
     // process the signup form
     // app.post('/signup', do all our passport stuff here);
@@ -60,10 +127,8 @@ module.exports = function(app, passport) {
     // =====================================
     // we will want this protected so you have to be logged in to visit
     // we will use route middleware to verify this (the isLoggedIn function)
-    app.get('/profile', auth.isLoggedIn, function(req, res) {
-        /*res.render('profile.ejs', {
-            user : req.user // get the user out of session and pass to template
-        });*/
+    /*app.get('/profile', auth.isLoggedIn, function(req, res) {
+        
         res.json({message : "You are logged!", user: req.user});
     });
 
@@ -73,7 +138,7 @@ module.exports = function(app, passport) {
     app.get('/logout', function(req, res) {
         req.logout();
         res.redirect('/');
-    });
+    });*/
 };
 
 // route middleware to make sure a user is logged in

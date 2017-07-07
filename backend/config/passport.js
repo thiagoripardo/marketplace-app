@@ -1,5 +1,6 @@
 // load all the things we need
-var JsonStrategy = require('passport-json').Strategy;
+var JwtStrategy = require('passport-jwt').Strategy;
+var ExtractJwt = require('passport-jwt').ExtractJwt;
 
 // load up the user model
 var User = require('../app/models/user');
@@ -7,31 +8,28 @@ var User = require('../app/models/user');
 // expose this function to our app using module.exports
 module.exports = function(passport) {
 
-    // =========================================================================
-    // passport session setup ==================================================
-    // =========================================================================
-    // required for persistent login sessions
-    // passport needs ability to serialize and unserialize users out of session
-
-    // used to serialize the user for the session
-    passport.serializeUser(function(user, done) {
-        done(null, user.email);
-    });
-
-    // used to deserialize the user
-    passport.deserializeUser(function(email, done) {
-        User.get({email: email}, function(err, user) {
-            done(err, user);
+    var opts = {};
+    opts.jwtFromRequest = ExtractJwt.fromAuthHeader();
+    opts.secretOrKey = "ThisIsAnVerySecureKey";
+    passport.use(new JwtStrategy(opts, function(jwt_payload, done) {
+        User.get({email: jwt_payload.email}, function(err, user) {
+            if (err) {
+                return done(err, false);
+            }
+            if (user) {
+                done(null, user);
+            } else {
+                done(null, false);
+            }
         });
-    });
-
+    }));
     // =========================================================================
     // LOCAL SIGNUP ============================================================
     // =========================================================================
     // we are using named strategies since we have one for login and one for signup
     // by default, if there was no name, it would just be called 'local'
 
-    passport.use('signup', new JsonStrategy({
+    /*passport.use('signup', new JsonStrategy({
         usernameProp: 'email',
         passwordProp: 'password'
         },
@@ -103,5 +101,5 @@ module.exports = function(passport) {
                 return done(null, user);
             });
         }
-    ));
+    ));*/
 };

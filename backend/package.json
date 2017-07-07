@@ -1,14 +1,14 @@
 {
-  "name": "uniquest",
+  "name": "store",
   "main": "app.js",
   "version": "1.0.1",
-  "description": "Web server for uniquest app",
+  "description": "Web server for store app",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://bitbucket.org/tmripardo/questlog-backend.git"
+    "url": "https://bitbucket.org/NewtonJoaquim/nuvem-trabalho-final"
   },
   "author": "Eduardo Melo, Thiago Ripardo",
   "license": "Apache-2.0",
@@ -25,12 +25,14 @@
     "express": "latest",
     "express-load": "latest",
     "express-session": "latest",
+    "jsonwebtoken": "latest",
     "method-override": "latest",
     "morgan": "latest",
     "multer": "latest",
     "mysql": "latest",
     "passport": "latest",
     "passport-json": "latest",
+    "passport-jwt": "^2.2.1",
     "passport-local": "latest",
     "string-hash": "latest"
   }

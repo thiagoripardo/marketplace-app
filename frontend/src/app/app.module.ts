@@ -13,6 +13,13 @@ import { AgendamentosPage } from '../pages/agendamentos/agendamentos';
 import { LoginPage } from '../pages/login/login';
 import { UsuarioService } from '../domain/usuario/usuario-service';
 import { PerfilPage } from '../pages/perfil/perfil';
+import { ShopPage } from '../pages/shop/shop';
+import { ItemPage } from '../pages/item/item';
+import { UserRegistrationPage } from '../pages/user-registration/user-registration';
+import { ShopRegistrationPage } from '../pages/shop-registration/shop-registration';
+import { ItemRegistrationPage } from '../pages/item-registration/item-registration';
+import { CartPage } from '../pages/cart/cart';
+import { PaymentPage } from '../pages/payment/payment';
 
 function provideStorage() {
 
@@ -31,7 +38,14 @@ function provideStorage() {
     CadastroPage, 
     AgendamentosPage, 
     LoginPage, 
-    PerfilPage
+    PerfilPage,
+    ShopPage,
+    ItemPage,
+    UserRegistrationPage,
+    ShopRegistrationPage,
+    ItemRegistrationPage,
+    CartPage,
+    PaymentPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -44,7 +58,14 @@ function provideStorage() {
     CadastroPage, 
     AgendamentosPage, 
     LoginPage, 
-    PerfilPage
+    PerfilPage,
+    ShopPage,
+    ItemPage,
+    UserRegistrationPage,
+    ShopRegistrationPage,
+    ItemRegistrationPage,
+    CartPage,
+    PaymentPage
   ],
   providers: [
     { provide: ErrorHandler, useClass: IonicErrorHandler }, 

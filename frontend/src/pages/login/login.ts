@@ -13,8 +13,8 @@ import 'rxjs/add/operator/map';
 })
 export class LoginPage {
 
-  public email = 'uniquest@uniquest.com';
-  public password = '57n92s';
+  public email = 'joao@alura.com.br';
+  public password = 'alura123';
   public isAuthenticated: boolean = false;
   public result;
 
