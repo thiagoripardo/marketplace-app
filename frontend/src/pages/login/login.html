@@ -1,12 +1,36 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Olá, faça o seu login!</ion-title>
+    <ion-title>Login</ion-title>
   </ion-navbar>
 
 </ion-header>
 
+
+
 <ion-content padding>
+  <form (submit)="doLogin()">
+    <ion-item>
+      <ion-label stacked>Username</ion-label>
+      <ion-input [(ngModel)]="loginData.email" name="email" type="email" placeholder="Email" ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Password</ion-label>
+      <ion-input [(ngModel)]="loginData.password" name="password" type="password" placeholder="Password"></ion-input>
+    </ion-item>
+    <button ion-button block type="submit">
+      Login
+    </button>
+  </form>
+
+  <button ion-button block clear (click)="register()">
+    No have an account? Register Now
+  </button>
+</ion-content>
+
+
+
+<!--ion-content padding>
 
  <form (submit)="efetuaLogin()">
     <ion-item>
@@ -22,4 +46,4 @@
     <button ion-button block type="submit">ENTRAR</button>
   </form>
 
-</ion-content>
+</ion-content-->

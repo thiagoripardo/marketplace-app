@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>UserRegistration</ion-title>
+    <ion-title>Registration</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,4 +15,17 @@
 
 <ion-content padding>
 
+  <form (submit)="doSignup()">
+    <ion-item>
+      <ion-label stacked>Email</ion-label>
+      <ion-input [(ngModel)]="regData.email" name="email" type="email" placeholder="Your email" ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Password</ion-label>
+      <ion-input [(ngModel)]="regData.password" name="password" type="password" placeholder="Your password"></ion-input>
+    </ion-item>
+    <button ion-button block type="submit">
+      SignUp
+    </button>
+  </form>
 </ion-content>

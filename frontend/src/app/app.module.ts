@@ -20,6 +20,10 @@ import { ShopRegistrationPage } from '../pages/shop-registration/shop-registrati
 import { ItemRegistrationPage } from '../pages/item-registration/item-registration';
 import { CartPage } from '../pages/cart/cart';
 import { PaymentPage } from '../pages/payment/payment';
+import { TabsPage } from '../pages/tabs/tabs';
+import { AboutPage } from '../pages/about/about';
+import { ContactPage } from '../pages/contact/contact';
+import { AuthService } from '../providers/auth-service';
 
 function provideStorage() {
 
@@ -45,7 +49,10 @@ function provideStorage() {
     ShopRegistrationPage,
     ItemRegistrationPage,
     CartPage,
-    PaymentPage
+    PaymentPage,
+    TabsPage,
+    AboutPage,
+    ContactPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -65,14 +72,18 @@ function provideStorage() {
     ShopRegistrationPage,
     ItemRegistrationPage,
     CartPage,
-    PaymentPage
+    PaymentPage,
+    TabsPage,
+    AboutPage,
+    ContactPage
   ],
   providers: [
     { provide: ErrorHandler, useClass: IonicErrorHandler }, 
-    AgendamentoService,
+    /*AgendamentoService,
     { provide: Storage, useFactory: provideStorage},
     AgendamentoDao, 
-    UsuarioService
+    UsuarioService,*/
+    AuthService
   ]
 })
 export class AppModule {}

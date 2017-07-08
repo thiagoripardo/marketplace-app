@@ -69,7 +69,7 @@ module.exports = function(app, passport) {
 
                 // check to see if theres already a user with that email
                 if (user) {
-                    return res.json({ success: false, message: 'That email address already exists.'});
+                    res.status(403).send({ success: false, message: 'That email address already exists.'});
                 } else {
                     var newUser = new User();
 
@@ -89,14 +89,14 @@ module.exports = function(app, passport) {
         }
     });
 
-    app.post('/authenticate', function(req, res) {
+    app.post('/login', function(req, res) {
         User.get({
             email: req.body.email
         }, function(err, user) {
             if (err) throw err;
 
             if (!user) {
-                res.send({ success: false, message: 'Authentication failed. User not found.' });
+                res.status(403).send({success: false, msg: 'Authentication failed, User not found'});
             } else {
                 // Check if password matches
                 user.comparePassword(req.body.password, function(err, isMatch) {
@@ -104,11 +104,11 @@ module.exports = function(app, passport) {
                     // Create token if the password matched and no error was thrown
                     
                     var token = jwt.sign(user, "ThisIsAnVerySecureKey", {
-                        expiresIn: 100 // in seconds
+                        expiresIn: 1000 // in seconds
                     });
                         res.json({ success: true, token: 'JWT ' + token });
                     } else {
-                        res.send({ success: false, message: 'Authentication failed. Passwords did not match.' });
+                        return res.status(403).send({success: false, msg: 'Authenticaton failed, wrong password.'});
                     }
                 });
             }
@@ -116,7 +116,11 @@ module.exports = function(app, passport) {
     });
 
     app.get('/dashboard', passport.authenticate('jwt', { session: false }), function(req, res) {
-        res.send('It worked! User id is: ' + req.user.email + '.');
+        res.json(
+            { 
+                message : 'It worked!', 
+                user: 'User id is: ' + req.user.email + '.'
+            });
     });
 
     // process the signup form

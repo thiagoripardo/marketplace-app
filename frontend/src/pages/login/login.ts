@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
-import { HomePage } from '../home/home';
-import { UsuarioService } from '../../domain/usuario/usuario-service';
-import { Http, Headers, Response, RequestOptions, CookieXSRFStrategy } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
+import { NavController, LoadingController, ToastController } from 'ionic-angular';
+import { AuthService } from '../../providers/auth-service';
+import { TabsPage } from '../tabs/tabs';
+import { UserRegistrationPage } from '../user-registration/user-registration';
 
 @Component({
   selector: 'page-login',
@@ -13,53 +10,51 @@ import 'rxjs/add/operator/map';
 })
 export class LoginPage {
 
-  public email = 'joao@alura.com.br';
-  public password = 'alura123';
-  public isAuthenticated: boolean = false;
-  public result;
+  loading: any;
+  loginData = { email:'', password:'' };
+  data: any;
 
-  constructor(
-    public navCtrl: NavController, 
-    public navParams: NavParams, 
-    private _service: UsuarioService, 
-    private _alertCtrl: AlertController,
-    public http: Http) {}
-  efetuaLogin() {
+  constructor(public navCtrl: NavController, public authService: AuthService, public loadingCtrl: LoadingController, private toastCtrl: ToastController) {}
 
-    this._service
-      .efetuaLogin(this.email, this.password)
-      .then(usuario => {
-        console.log(usuario);
-        this.navCtrl.setRoot(HomePage)
-      })
-      .catch(() => {
-        this._alertCtrl.create({
-          title: 'Problema no login',
-          subTitle: 'Email ou senha inválidos. Verifique',
-          buttons: [{ text: 'Ok'}]
-        }).present();
-      });
-
-    
- 
-    /*let postParams = {
-
-      email: 'uniquest@uniquest.com',
-      password: '57n92s'
-
-    };
-    
-    var headers = new Headers();
-    headers.append("Accept", 'application/json');
-    headers.append('Content-Type', 'application/json' );
-    headers.append('Cookie', '' );
-    let options = new RequestOptions({ headers: headers});
-    
-    this.http.post("http://uniquest.pqv2emwpjw.us-west-2.elasticbeanstalk.com/login", postParams, options)
-      .subscribe(data => {
-        console.log(data['_body']);
-       }, error => {
-        console.log(error);// Error getting the data
-      });*/
+  doLogin() {
+    this.showLoader();
+    this.authService.login(this.loginData).then((result) => {
+      this.loading.dismiss();
+      this.data = result;
+      //console.log(this.data);
+      localStorage.setItem('token', this.data.token);
+      this.navCtrl.setRoot(TabsPage);
+    }, (err) => {
+      this.loading.dismiss();
+      this.presentToast(err);
+    });
   }
+
+  register() {
+    this.navCtrl.push(UserRegistrationPage);
+  }
+
+  showLoader(){
+    this.loading = this.loadingCtrl.create({
+        content: 'Authenticating...'
+    });
+
+    this.loading.present();
+  }
+
+  presentToast(msg) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: 3000,
+      position: 'bottom',
+      dismissOnPageChange: true
+    });
+
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+
+    toast.present();
+  }
+
 }

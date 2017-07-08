@@ -1,11 +1,33 @@
 <ion-header>
   <ion-navbar>
+    <button ion-button clear (click)="logout()">
+      <ion-icon name="log-out"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h2>You are logged in</h2>
+    <button ion-button (click)="logout()">Logout</button>
+    <button ion-button (click)="getinfo()">Getinfo</button>
+</ion-content>
+
+
+
+
+<!--ion-header>
+  <ion-navbar>
+
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>
-      aluraCar
-    </ion-title>
+
+    <button ion-button clear (click)="logout()">
+      <ion-icon name="log-out" item-left></ion-icon>
+    </button>
+
+    <ion-title>Home</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -15,4 +37,4 @@
       {{ carro.nome }}
     </ion-item>
   </ion-list>
-</ion-content>
+</ion-content-->
