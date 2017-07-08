@@ -47,7 +47,7 @@ module.exports = function() {
     require('../app/routes/missions.js')(app);
     //require('../app/routes/cart.js')(app);
     //require('../app/routes/payment.js')(app);
-    //require('../app/routes/shops.js')(app);
+    require('../app/routes/shops.js')(app);
 
     return app;
 

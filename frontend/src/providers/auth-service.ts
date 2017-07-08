@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 
-let apiUrl = 'http://localhost:8080/';
+//let apiUrl = 'http://localhost:8080/';
+let apiUrl = 'http://uniquest.pqv2emwpjw.us-west-2.elasticbeanstalk.com/';
 
 @Injectable()
 export class AuthService {
