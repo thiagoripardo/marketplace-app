@@ -4,7 +4,7 @@ import { ShopService } from '../../providers/shop-service';
 import { NavController, App, LoadingController, ToastController, AlertController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { Shop } from '../../domain/store/shop';
-import { ItemPage } from '../item/item';
+import { ShopPage } from '../shop/shop';
 
 @Component({
   selector: 'page-home',
@@ -107,7 +107,7 @@ export class HomePage {
   }
 
   selectStore(shop){
-    this.navCtrl.push(ItemPage, { itemSelect: shop } );
+    this.navCtrl.push(ShopPage, { shopSelect: shop } );
   }
 
 }

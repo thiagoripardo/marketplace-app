@@ -2,9 +2,11 @@ import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Shop } from '../domain/store/shop';
+import { Item } from '../domain/store/item';
+
 
 /*
-  Generated class for the ShopService provider.
+  Generated class for the ItemService provider.
 
   See https://angular.io/docs/ts/latest/guide/dependency-injection.html
   for more info on providers and Angular 2 DI.
@@ -13,13 +15,15 @@ import { Shop } from '../domain/store/shop';
 let apiUrl = 'http://localhost:8080/';
 
 @Injectable()
-export class ShopService {
+export class ItemService {
 
   public shops:Shop[] = [];
   public sh:Shop;
+  public items: Item[] = [];
+  public item: Item;
 
   constructor(public http: Http) {
-    console.log('Hello ShopService Provider');
+    console.log('Hello ItemService Provider');
   }
 
   postOperation(data) {
@@ -69,12 +73,12 @@ export class ShopService {
     });
   }
 
-  getShopsFromOwner(data) {
+  getShopsFromOwner(ownerstore) {
     return new Promise(resolve => {
       var headers = new Headers();
       headers.append('Authorization', localStorage.getItem('token'));
       //console.log(localStorage.getItem('token'));
-      this.http.get(apiUrl+'/shops/'+data.ownerid, {headers: headers})
+      this.http.get(apiUrl+'shops/products/'+ownerstore, {headers: headers})
         .subscribe(res => {
             resolve(res.json());
             //console.log(res.json());
@@ -98,5 +102,4 @@ export class ShopService {
           });
     })
   }
-
 }

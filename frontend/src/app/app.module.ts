@@ -25,6 +25,7 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { AuthService } from '../providers/auth-service';
 import { ShopService } from '../providers/shop-service';
+import { ItemService } from '../providers/item-service';
 
 function provideStorage() {
 
@@ -85,7 +86,8 @@ function provideStorage() {
     AgendamentoDao, 
     UsuarioService,*/
     AuthService, 
-    ShopService
+    ShopService,
+    ItemService
   ]
 })
 export class AppModule {}

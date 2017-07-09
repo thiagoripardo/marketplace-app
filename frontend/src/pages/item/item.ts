@@ -17,7 +17,7 @@ export class ItemPage {
   
 
   constructor(public navParams: NavParams, public navCtrl: NavController) {
-    this.shop = this.navParams.get('shopSelect');
+    //this.shop = this.navParams.get('shopSelect');
   }
 
   ionViewDidLoad() {

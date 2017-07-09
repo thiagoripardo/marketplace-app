@@ -21275,3 +21275,8 @@ sub {
 page-agendamentos .falha {
   color: red;
 }
+
+page-home button {
+  background: none !important;
+  background-color: none !important;
+}

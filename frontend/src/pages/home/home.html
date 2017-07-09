@@ -1,21 +1,22 @@
 <ion-header>
   <ion-navbar>
-    <button ion-button clear (click)="logout()">
-      <ion-icon name="log-out"></ion-icon>
-    </button>
+    <ion-buttons start clear>
+      <button (click)="logout()">
+        <ion-icon name="log-out"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title>Home</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h3>Lojas disponíveis</h3>
   <ion-list>
     <ion-item *ngFor="let shop of shops" (click)="selectStore(shop)">
       {{ shop.info.name }}
     </ion-item>
   </ion-list>
-  <button ion-button (click)="logout()">Logout</button>
-  <button ion-button (click)="getinfo()">Getinfo</button>
+  <!--button ion-button (click)="logout()">Logout</button>
+  <button ion-button (click)="getinfo()">Getinfo</button-->
 </ion-content>
 
 
