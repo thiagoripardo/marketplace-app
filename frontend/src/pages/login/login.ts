@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, LoadingController, ToastController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { TabsPage } from '../tabs/tabs';
+import { HomePage } from '../home/home';
 import { UserRegistrationPage } from '../user-registration/user-registration';
 
 @Component({
@@ -23,7 +24,7 @@ export class LoginPage {
       this.data = result;
       //console.log(this.data);
       localStorage.setItem('token', this.data.token);
-      this.navCtrl.setRoot(TabsPage);
+      this.navCtrl.setRoot(HomePage);
     }, (err) => {
       this.loading.dismiss();
       this.presentToast(err);

@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../providers/auth-service';
+import { ShopService } from '../../providers/shop-service';
 import { NavController, App, LoadingController, ToastController, AlertController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
+import { Shop } from '../../domain/store/shop';
+import { ItemPage } from '../item/item';
 
 @Component({
   selector: 'page-home',
@@ -11,16 +14,31 @@ export class HomePage {
 
   loading: any;
   isLoggedIn: boolean = false;
-
+  public shops : Shop[] = [];
+  public shp;
   constructor(public app: App, 
     public navCtrl: NavController, 
     public authService: AuthService, 
     public loadingCtrl: LoadingController, 
     private toastCtrl: ToastController,
-    private _alertCtrl: AlertController) {
+    private _alertCtrl: AlertController,
+    public shopService: ShopService) {
       if(localStorage.getItem("token")) {
         this.isLoggedIn = true;
       }
+  }
+
+  ngOnInit() {
+    this.initLoader();
+
+    this.shopService.getAllShops().then((result) => {
+      this.loading.dismiss();
+      this.shops = result;
+      //console.log(this.shops);
+    }, (err) => {
+      this.loading.dismiss();
+      this.presentToast(err);
+    });
   }
 
   logout() {
@@ -49,24 +67,15 @@ export class HomePage {
     });
   }
 
-    /*getinfo() {
-      this.showLoader();
-      this.authService.getinfo().then(data => {
-        this.loading.dismiss();
-        this.presentToast(data);
-      }, (err) => {
-        this.loading.dismiss();
-        this.presentToast(err);
-      });                                 
-    }*/
-  /*logout() {
-    this.logoutLoader();
-    localStorage.clear();
-    this.navCtrl.setRoot(LoginPage);
-    this.loading.dismiss();
-  }*/
-
   showLoader(){
+    this.loading = this.loadingCtrl.create({
+        content: 'Authenticating...'
+    });
+
+    this.loading.present();
+  }
+
+  initLoader(){
     this.loading = this.loadingCtrl.create({
         content: 'Authenticating...'
     });
@@ -95,6 +104,10 @@ export class HomePage {
     });
 
     toast.present();
+  }
+
+  selectStore(shop){
+    this.navCtrl.push(ItemPage, { itemSelect: shop } );
   }
 
 }

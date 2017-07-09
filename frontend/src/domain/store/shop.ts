@@ -1,4 +1,7 @@
 export class Shop {
 
-    constructor(public name: string, public adress: string, public phoneNumber: number) {}
+    constructor(
+        public id : number,
+        public ownerid : string,
+        public info : any) {}
 }

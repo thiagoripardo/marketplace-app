@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { Shop } from '../../domain/store/shop';
 
 /*
   Generated class for the Item page.
@@ -12,8 +13,12 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'item.html'
 })
 export class ItemPage {
+  public shop: Shop;
+  
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navParams: NavParams, public navCtrl: NavController) {
+    this.shop = this.navParams.get('shopSelect');
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ItemPage');

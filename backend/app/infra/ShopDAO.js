@@ -103,10 +103,10 @@ ShopDAO.prototype.scan = function(info, callback){
     this._connection.scan(getDynamo, callback);
 }
 
-ShopDAO.prototype.scanAll = function(info, callback){
+ShopDAO.prototype.scanAll = function(callback){
     //--------------- DYNAMO DB VERSION --------------------------
     //Change code bellow if you want to use another cloud server
-    console.log(info);
+
     var getDynamo = {
         TableName: table,
         ProjectionExpression: "id, ownerid, info"

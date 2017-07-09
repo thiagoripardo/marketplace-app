@@ -24,6 +24,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { AuthService } from '../providers/auth-service';
+import { ShopService } from '../providers/shop-service';
 
 function provideStorage() {
 
@@ -83,7 +84,8 @@ function provideStorage() {
     { provide: Storage, useFactory: provideStorage},
     AgendamentoDao, 
     UsuarioService,*/
-    AuthService
+    AuthService, 
+    ShopService
   ]
 })
 export class AppModule {}

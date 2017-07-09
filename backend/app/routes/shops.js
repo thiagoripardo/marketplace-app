@@ -2,6 +2,8 @@
 
 module.exports = function(app){
     var auth = require('../infra/isLoggedIn');
+    var connectionFactoryDynamo = app.infra.connectionFactoryDynamo();
+    var shopsDAO = new app.infra.ShopDAO(connectionFactoryDynamo);
 
     /* ###################### GET OPERATIONS ###################### */
     app.get('/shops/:ownerid', function(req, res) {
@@ -9,9 +11,6 @@ module.exports = function(app){
         var data = {
             "ownerid" : req.params.ownerid
         };
-        console.log(req.params);
-        var connectionFactoryDynamo = app.infra.connectionFactoryDynamo();
-        var shopsDAO = new app.infra.ShopDAO(connectionFactoryDynamo);
 
         shopsDAO.scan(data, function(err, result){
             responseToFront(err, res, result);
@@ -23,11 +22,19 @@ module.exports = function(app){
         var data = {
             "id" : Number(req.params.id)
         };
-        
-        var connectionFactoryDynamo = app.infra.connectionFactoryDynamo();
-        var shopsDAO = new app.infra.ShopDAO(connectionFactoryDynamo);
 
         shopsDAO.get(data, function(err, result){
+            responseToFront(err, res, result);
+        });
+    });
+
+    app.get('/all/shops', function(req, res) {
+        
+        var data = {
+            "id" : Number(req.params.id)
+        };
+
+        shopsDAO.scanAll(function(err, result){
             responseToFront(err, res, result);
         });
     });
@@ -48,27 +55,6 @@ module.exports = function(app){
                     responseToFront(err, res, result);
                 });
             } 
-            
-            else if(data.action === "get") {
-                delete data.action;
-                shopsDAO.get(data, function(err, result){
-                    responseToFront(err, res, result);
-                });
-            }
-
-            else if(data.action === "scan") {
-                delete data.action;
-                shopsDAO.scan(data, function(err, result){
-                    responseToFront(err, res, result);
-                });
-            } 
-            
-            else if(data.action === "scanAll") {
-                delete data.action;
-                shopsDAO.scanAll(data, function(err, result){
-                    responseToFront(err, res, result);
-                });
-            }
 
             else if(data.action === "edit") {
                 delete data.action;
