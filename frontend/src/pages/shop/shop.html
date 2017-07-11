@@ -12,5 +12,8 @@
 
 
 <ion-content padding>
-
+  <ion-item *ngFor="let product of products" (click)="selectProduct(product)">
+      {{ product.info.name }}&nbsp;&nbsp;&nbsp;&nbsp;
+      {{product.info.price}}
+  </ion-item>
 </ion-content>
