@@ -7,11 +7,12 @@
 
     <ion-content padding>
         <ion-list inset>
-            <button menuClose ion-item *ngFor="let pagina of paginas" (click)="abrePagina(pagina)">
-                {{ pagina.titulo }}
+            <button menuClose ion-item *ngFor="let page of pages" (click)="openPage(page)">
+                {{ page.title }}
             </button>
         </ion-list>
     </ion-content>
 </ion-menu>
 
-<ion-nav [root]="rootPage" swipeBackEnabled="false" #content></ion-nav>
+<!--ion-nav [root]="rootPage" swipeBackEnabled="false" #content></ion-nav-->
+<ion-nav id="nav" #content [root]="rootPage"></ion-nav>

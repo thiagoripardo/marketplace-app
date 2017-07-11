@@ -1,9 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
-import { AgendamentosPage } from '../pages/agendamentos/agendamentos';
 import { LoginPage } from '../pages/login/login';
+import { HomePage } from '../pages/home/home';
 import { PerfilPage } from '../pages/perfil/perfil';
+import { CartPage } from '../pages/cart/cart';
+import { UserShopPage } from '../pages/user-shop/user-shop';
 
 @Component({
   templateUrl: 'app.html'
@@ -11,9 +13,10 @@ import { PerfilPage } from '../pages/perfil/perfil';
 export class MyApp {
   rootPage = LoginPage;
 
-  public paginas = [
-    { titulo: 'Agendamentos', componente: AgendamentosPage },
-    { titulo: 'Perfil', componente: PerfilPage }
+  public pages = [
+    { title: 'Perfil', component: PerfilPage },
+    { title: 'Minhas lojas', component: UserShopPage },
+    { title: 'Meu carrinho', component: CartPage }
   ];
 
   @ViewChild(Nav) public nav: Nav;
@@ -27,8 +30,8 @@ export class MyApp {
     });
   }
 
-  abrePagina(pagina) {
+  openPage(page) {
 
-    this.nav.push(pagina.componente);
+    this.nav.push(page.component);
   }
 }

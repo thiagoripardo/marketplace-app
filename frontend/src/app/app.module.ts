@@ -23,18 +23,10 @@ import { PaymentPage } from '../pages/payment/payment';
 import { TabsPage } from '../pages/tabs/tabs';
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
+import { UserShopPage } from '../pages/user-shop/user-shop';
 import { AuthService } from '../providers/auth-service';
 import { ShopService } from '../providers/shop-service';
 import { ItemService } from '../providers/item-service';
-
-function provideStorage() {
-
-  return new Storage(['indexeddb'], {
-    name: 'aluracar',
-    storeName: 'agendamentos'
-  });
-
-}
 
 @NgModule({
   declarations: [
@@ -54,7 +46,8 @@ function provideStorage() {
     PaymentPage,
     TabsPage,
     AboutPage,
-    ContactPage
+    ContactPage,
+    UserShopPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -77,14 +70,11 @@ function provideStorage() {
     PaymentPage,
     TabsPage,
     AboutPage,
-    ContactPage
+    ContactPage,
+    UserShopPage
   ],
   providers: [
     { provide: ErrorHandler, useClass: IonicErrorHandler }, 
-    /*AgendamentoService,
-    { provide: Storage, useFactory: provideStorage},
-    AgendamentoDao, 
-    UsuarioService,*/
     AuthService, 
     ShopService,
     ItemService

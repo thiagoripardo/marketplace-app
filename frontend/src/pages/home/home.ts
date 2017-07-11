@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../providers/auth-service';
 import { ShopService } from '../../providers/shop-service';
-import { NavController, App, LoadingController, ToastController, AlertController } from 'ionic-angular';
+import { NavController, App, MenuController, LoadingController, ToastController, AlertController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { Shop } from '../../domain/store/shop';
 import { ShopPage } from '../shop/shop';
@@ -22,10 +22,12 @@ export class HomePage {
     public loadingCtrl: LoadingController, 
     private toastCtrl: ToastController,
     private _alertCtrl: AlertController,
-    public shopService: ShopService) {
+    public shopService: ShopService,
+    public menu: MenuController) {
       if(localStorage.getItem("token")) {
         this.isLoggedIn = true;
       }
+      menu.enable(true);
   }
 
   ngOnInit() {
