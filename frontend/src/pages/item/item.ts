@@ -16,11 +16,11 @@ import { CartPage } from '../cart/cart';
 })
 export class ItemPage {
   public shop: Shop;
-  public produt : Item;
+  public product : Item;
 
   constructor(public navParams: NavParams, public navCtrl: NavController) {
     //this.shop = this.navParams.get('shopSelect');
-    this.produt = navParams.get('productSelect');
+    this.product = navParams.get('productSelect');
   }
 
   ionViewDidLoad() {
