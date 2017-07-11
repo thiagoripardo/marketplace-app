@@ -20,7 +20,7 @@
     "connect-flash": "latest",
     "cookie-parser": "latest",
     "cors": "^2.8.3",
-    "dynamoose": "^0.8.3",
+    "dynamoose": "latest",
     "ejs": "latest",
     "express": "latest",
     "express-load": "latest",
