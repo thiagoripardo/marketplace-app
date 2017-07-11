@@ -7,12 +7,18 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Item</ion-title>
+    <ion-title>{{item.info.name}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <ion-item>
+    {{item.info.price}}
+  </ion-item>
+  <ion-item>
+    {{item.info.description}}
+  </ion-item>
+  <button ion-button color="light" ion-right (click) = "addCart(item.data)">Adicionar ao Carrinho</button>
 </ion-content>

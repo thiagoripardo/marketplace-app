@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Shop } from '../../domain/store/shop';
+import { Item } from '../../domain/store/item';
+import { CartPage } from '../cart/cart';
 
 /*
   Generated class for the Item page.
@@ -24,4 +26,7 @@ export class ItemPage {
     console.log('ionViewDidLoad ItemPage');
   }
 
+  addCart(item){
+    this.navCtrl.push(CartPage,{item:Item});
+  }
 }
