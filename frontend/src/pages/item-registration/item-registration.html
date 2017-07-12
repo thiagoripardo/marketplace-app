@@ -14,5 +14,25 @@
 
 
 <ion-content padding>
-
+  <form (submit)="doRegisterItem()">
+      <ion-item>
+        <ion-label stacked>E-mail</ion-label>
+        <ion-input [(ngModel)]="regData.ownerstore" name="idDaLoja" type="email" placeholder="Your email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Name</ion-label>
+        <ion-input [(ngModel)] = "regData.info.name" name="name" type="text" placeholder="Your shop's name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Phone</ion-label>
+        <ion-input [(ngModel)] = "regData.info.description" name="des" type="text" placeholder="Your contact phone"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Address</ion-label>
+        <ion-input [(ngModel)] = "regData.info.price" name="price" type="number" placeholder="Your shop's name"></ion-input>
+      </ion-item>
+      <button ion-button block type="submit">
+        Register
+      </button>
+    </form>
 </ion-content>
