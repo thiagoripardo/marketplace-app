@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../providers/auth-service';
 import { ShopService } from '../../providers/shop-service';
-import { NavController, App, MenuController, LoadingController, ToastController, AlertController } from 'ionic-angular';
+import { NavController, App, MenuController, LoadingController, ToastController, AlertController, NavParams } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { Shop } from '../../domain/store/shop';
 import { ShopPage } from '../shop/shop';
@@ -16,8 +16,11 @@ export class HomePage {
   isLoggedIn: boolean = false;
   public shops : Shop[] = [];
   public shp;
+  public emailParam;
+
   constructor(public app: App, 
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
+    public navParams: NavParams, 
     public authService: AuthService, 
     public loadingCtrl: LoadingController, 
     private toastCtrl: ToastController,
@@ -28,6 +31,8 @@ export class HomePage {
         this.isLoggedIn = true;
       }
       menu.enable(true);
+
+      this.emailParam = navParams.get("email");
   }
 
   ngOnInit() {

@@ -23,5 +23,7 @@ export class CartPage {
     console.log('ionViewDidLoad CartPage');
   
 }
-  
+
+  buyItems(){}
+    //console.log('done');
 }

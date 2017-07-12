@@ -24,7 +24,7 @@ export class LoginPage {
       this.data = result;
       //console.log(this.data);
       localStorage.setItem('token', this.data.token);
-      this.navCtrl.setRoot(HomePage);
+      this.navCtrl.setRoot(HomePage, {email: this.loginData.email});
     }, (err) => {
       this.loading.dismiss();
       this.presentToast(err);

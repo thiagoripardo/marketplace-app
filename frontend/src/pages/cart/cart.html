@@ -22,7 +22,10 @@
         </p>
       </ion-item>
 
-      <button ion-button clear(click) = "buyItems">Comprar
-      </button> 
+     <!-- <button ion-button clear(click) = "buyItems()">Comprar
+      </button>--> 
     </ion-list>
+    <ion-buttons>
+      <button (click)="buyItems()">Buy Items</button>
+    </ion-buttons>
 </ion-content>
