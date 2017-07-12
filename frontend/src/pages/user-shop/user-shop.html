@@ -18,7 +18,7 @@
     <button (click)="addShop()">Add Shop</button>
   </ion-buttons>
   <ion-list>
-    <ion-item *ngFor="let shop of shops">
+    <ion-item *ngFor="let shop of shops" (click)="selectStore(shop)">
       {{ shop.info.name }}
     </ion-item>
   </ion-list>

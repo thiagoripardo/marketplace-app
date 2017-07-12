@@ -4,7 +4,7 @@ import { Shop } from './../../domain/store/shop';
 import { ShopRegistrationPage } from './../shop-registration/shop-registration';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-
+import { ItemRegistrationPage } from '../item-registration/item-registration';
 /*
   Generated class for the UserShop page.
 
@@ -24,12 +24,28 @@ export class UserShopPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserShopPage');
   }
+  ngOnInit() {
+    //this.initLoader();
+
+    this.shopService.getAllShops().then((result) => {
+      //this.loading.dismiss();
+      this.shops = result;
+      //console.log(this.shops);
+    }, (err) => {
+      //this.loading.dismiss();
+      //this.presentToast(err);
+    });
+  }
 
   addShop(){
     this.navCtrl.push(ShopRegistrationPage)
     this.shopService.getAllShops().then((result) =>{
       this.shops = result;
     });
+  }
+
+  selectStore(shop){
+    this.navCtrl.push(ItemRegistrationPage, { shopSelect: shop } );
   }
 
 }
