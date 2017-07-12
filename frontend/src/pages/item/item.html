@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{item.name}}</ion-title>
+    <ion-title>{{item.info.name}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,10 +15,13 @@
 
 <ion-content padding>
   <ion-item>
-    {{item.price}}
+    {{item.info.ownerstore}}
   </ion-item>
   <ion-item>
-    {{item.description}}
+    {{item.info.price}}
+  </ion-item>
+  <ion-item>
+    {{item.info.description}}
   </ion-item>
   <button ion-button color="light" ion-right (click) = "addCart(item.data)">Adicionar ao Carrinho</button>
 </ion-content>
