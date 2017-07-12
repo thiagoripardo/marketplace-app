@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 
-//let apiUrl = 'http://localhost:8080/';
 let apiUrl = 'http://marketplace.4bantaxps2.us-west-2.elasticbeanstalk.com/';
 //let apiUrl = 'http://uniquest.pqv2emwpjw.us-west-2.elasticbeanstalk.com/';
 
@@ -40,18 +39,17 @@ export class AuthService {
   }
 
   getinfo() {
-    return new Promise(resolve => {
-      var headers = new Headers();
-      headers.append('Authorization', localStorage.getItem('token'));
-      //console.log(localStorage.getItem('token'));
-      this.http.get(apiUrl+'dashboard', {headers: headers})
-        .subscribe(res => {
-            resolve(res.json());
-            //console.log(res.json());
-          }, (err) => {
-            resolve(err);
-          });
-    })
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', localStorage.getItem('token'));
+    return this.http
+      .get(apiUrl+'dashboard', {headers: headers})
+      .map(res => res.json())
+      .toPromise()
+      .then(data => {
+        //console.log(data);
+        return data;
+    });
   }
 
   logout(){
