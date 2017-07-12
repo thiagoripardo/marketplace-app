@@ -14,5 +14,12 @@
 
 
 <ion-content padding>
-
+  <ion-buttons>
+    <button (click)="addShop()">Add Shop</button>
+  </ion-buttons>
+  <ion-list>
+    <ion-item *ngFor="let shop of shops">
+      {{ shop.info.name }}
+    </ion-item>
+  </ion-list>
 </ion-content>

@@ -10,7 +10,8 @@ import { Shop } from '../domain/store/shop';
   for more info on providers and Angular 2 DI.
 */
 
-let apiUrl = 'http://localhost:8080/';
+//let apiUrl = 'http://localhost:8080/';
+let apiUrl = 'http://marketplace.4bantaxps2.us-west-2.elasticbeanstalk.com/';
 
 @Injectable()
 export class ShopService {

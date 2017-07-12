@@ -1,3 +1,7 @@
+import { UsuarioService } from './../../domain/usuario/usuario-service';
+import { ShopService } from './../../providers/shop-service';
+import { Shop } from './../../domain/store/shop';
+import { ShopRegistrationPage } from './../shop-registration/shop-registration';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
@@ -13,10 +17,19 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class UserShopPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  public shops: Shop[] = [];
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public shopService: ShopService) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserShopPage');
+  }
+
+  addShop(){
+    this.navCtrl.push(ShopRegistrationPage)
+    this.shopService.getAllShops().then((result) =>{
+      this.shops = result;
+    });
   }
 
 }

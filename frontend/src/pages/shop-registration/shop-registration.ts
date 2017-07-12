@@ -1,3 +1,4 @@
+import { UserShopPage } from './../user-shop/user-shop';
 import { ShopService } from './../../providers/shop-service';
 import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
