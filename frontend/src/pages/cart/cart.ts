@@ -16,9 +16,9 @@ export class CartPage {
   count: number = 0;
   totalPedido: number = 0;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.items[this.count] = navParams.get('item');
-    this.count = this.count++;
-    this.calcTotalPedido(navParams.get('item')); 
+    //this.items[this.count] = navParams.get('item');
+    //this.count = this.count++;
+    //this.calcTotalPedido(navParams.get('item')); 
   }
 
   ionViewDidLoad() {

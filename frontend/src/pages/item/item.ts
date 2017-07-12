@@ -16,18 +16,21 @@ import { CartPage } from '../cart/cart';
 })
 export class ItemPage {
   public shop: Shop;
-  public product : Item;
+  public item : Item;
 
   constructor(public navParams: NavParams, public navCtrl: NavController) {
     //this.shop = this.navParams.get('shopSelect');
-    this.product = navParams.get('productSelect');
+    
   }
+   ngOnInit() {
+    this.item = this.navParams.get('itemSelect');
+   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ItemPage');
   }
 
   addCart(item){
-    this.navCtrl.push(CartPage,{product:Item});
+    this.navCtrl.push(CartPage,{item:Item});
   }
 }
